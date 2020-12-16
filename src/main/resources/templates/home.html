@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/layout :: head">
+    <meta charset="UTF-8">
+    <title>Customer List</title>
+</head>
+<body>
+<div>
+    <span style="font-size: x-large; font-weight: bold">Danh sách thành phố</span>
+    <button style="float: right; display: inline-block" th:href="@{/addprovince}">Thêm thành phố</button>
+</div>
+
+<table id="customers" border="1">
+    <thead>
+    <tr>
+        <th>#</th>
+        <th>Thành phố</th>
+        <th>Quốc gia</th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+        <th:block th:each="province : ${provinces}">
+            <tr >
+                <td th:text="${province.getProvinceId()}">1</td>
+                <td th:text="${province.getProvinceName()}">2</td>
+                <td th:text="${province.getNation()}">3</td>
+                <td><span th:href="@{/edit/__${province.getProvinceId()}__}">Chỉnh sửa</span> | <span th:href="@{/delete/__${province.getProvinceId()}__}">Xóa</span></td>
+            </tr>
+        </th:block>
+    </tbody>
+</table>
+<footer>
+    &copy; 2020 Minh Nguyễn No. 1
+</footer>
+</body>
+<script>
+    // Get the modal
+    var modal = document.getElementById("myModal");
+
+    // Get the button that opens the modal
+    var btn = document.getElementById("myBtn");
+
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
+
+    // When the user clicks on the button, open the modal
+    btn.onclick = function() {
+        modal.style.display = "block";
+    }
+
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function() {
+        modal.style.display = "none";
+    }
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+</script>
+</html>
