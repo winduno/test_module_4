@@ -6,11 +6,13 @@
 </head>
 <body>
 <div>
-    <span style="font-size: x-large; font-weight: bold">Danh sách thành phố</span>
-    <button style="float: right; display: inline-block" th:href="@{/addprovince}">Thêm thành phố</button>
+    <span style="font-size: 30px; font-weight: bold">Danh sách thành phố</span>
+    <a th:href="@{/addprovince}"><button style="float: right; display: inline-block">Thêm thành phố</button></a>
 </div>
-
-<table id="customers" border="1">
+<th:block th:if="${message}">
+    <p th:text="${message}"></p>
+</th:block>
+<table id="province" border="1">
     <thead>
     <tr>
         <th>#</th>
@@ -22,10 +24,13 @@
     <tbody>
         <th:block th:each="province : ${provinces}">
             <tr >
-                <td th:text="${province.getProvinceId()}">1</td>
-                <td th:text="${province.getProvinceName()}">2</td>
-                <td th:text="${province.getNation()}">3</td>
-                <td><span th:href="@{/edit/__${province.getProvinceId()}__}">Chỉnh sửa</span> | <span th:href="@{/delete/__${province.getProvinceId()}__}">Xóa</span></td>
+                <td th:text="${province.getProvinceId()}"></td>
+                <td th:text="${province.getProvinceName()}"></td>
+                <td th:text="${province.getNation()}"></td>
+                <td><a th:href="@{/edit/__${province.getProvinceId()}__}"> Chỉnh sửa </a> |
+                    <a href="#" onclick="deleteProvince(this)" th:id="${province.provinceId}" th:name="${province.provinceName}"> Xóa </a> |
+                    <a th:href="@{/detail/__${province.getProvinceId()}__}"> Chi tiết </a>
+                </td>
             </tr>
         </th:block>
     </tbody>
@@ -35,29 +40,10 @@
 </footer>
 </body>
 <script>
-    // Get the modal
-    var modal = document.getElementById("myModal");
-
-    // Get the button that opens the modal
-    var btn = document.getElementById("myBtn");
-
-    // Get the <span> element that closes the modal
-    var span = document.getElementsByClassName("close")[0];
-
-    // When the user clicks on the button, open the modal
-    btn.onclick = function() {
-        modal.style.display = "block";
-    }
-
-    // When the user clicks on <span> (x), close the modal
-    span.onclick = function() {
-        modal.style.display = "none";
-    }
-
-    // When the user clicks anywhere outside of the modal, close it
-    window.onclick = function(event) {
-        if (event.target == modal) {
-            modal.style.display = "none";
+    function deleteProvince(input) {
+        let confirmed = confirm("Bạn chắc chắn muốn xóa " + input.name + " chứ??");
+        if ( confirmed == true){
+            window.open("/delete/" + input.id, "_self");
         }
     }
 </script>

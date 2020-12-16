@@ -2,31 +2,52 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="/layout :: head"></head>
 <body>
-<h3>Modify Customer</h3>
-<p>
-    <a th:href="@{/}">
-        Back to customer list
-    </a>
-</p>
-<div id="form">
-    <form action="#" th:action="@{/customer/update}" th:object="${customer}"
-          method="POST" novalidate="novalidate">
-        <input type="hidden" name="id" th:value="${customer.getId()}"/>
-        <div>
-            <label>Name</label>
-            <input type="text" th:value="${customer.getName()}" name="name"/>
-        </div>
-        <div>
-            <label>Email</label>
-            <input type="email" th:value="${customer.getEmail()}" name="email"/>
-        </div>
-        <div>
-            <label>Address</label>
-            <input type="text" th:value="${customer.getAddress()}" name="address"/>
-        </div>
-        <input type="submit" value="Modify"/>
-    </form>
+<div>
+    <span style="font-size: 30px; font-weight: bold">Sửa thành phố</span>
+    <a th:href="@{/home}"><button style="float: right; display: inline-block">Quay lại</button></a>
 </div>
+<br>
+<th:block th:if="${message}">
+    <p th:text="${message}"></p>
+</th:block>
+<br>
+<form th:action="@{/edit/__${province.getProvinceId()}__}" th:object="${province}"
+      th:method="POST" id="form">
+    <!--        <input type="hidden" th:text="Chỗ này đéo cần"/>-->
+    <table>
+        <input type="hidden" th:field="*{provinceId}">
+        <tr>
+            <td><label>Province Name: </label></td>
+            <td><input type="text" th:field="*{provinceName}"/></td>
+        </tr>
+        <tr>
+            <td><label>Nation: </label></td>
+            <td>
+                <select th:field="*{nation}">
+                    <option th:each="nat:${nations}" th:value="${nat.getNationName()}" th:text="${nat.getNationName()}"></option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td><label>Area: </label></td>
+            <td><input type="text" th:field="*{area}"/></td>
+        </tr>
+        <tr>
+            <td><label>Population: </label></td>
+            <td><input type="text" th:field="*{population}"/></td>
+        </tr>
+        <tr>
+            <td><label>GDP: </label></td>
+            <td><input type="text" th:field="*{area}" name="email"/></td>
+        </tr>
+        <tr>
+            <td><label>Description</label></td>
+            <td><textarea th:field="*{description}" cols="100" rows="10"></textarea></td>
+        </tr>
+    </table>
+
+    <input type="submit" value="Save"></input>
+</form>
 <footer th:replace="/layout :: footer"></footer>
 </body>
 </html>

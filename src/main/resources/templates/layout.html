@@ -11,22 +11,22 @@
         h3{background-color: blue; color: white; padding: 10px 0 10px 20px;}
         footer{margin: 10px 0;}
 
-        #customers {
+        #province {
             font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
             border-collapse: collapse;
             width: 100%;
         }
 
-        #customers td, #customers th {
+        #province td, #province th {
             border: 1px solid #ddd;
             padding: 8px;
         }
 
-        #customers tr:nth-child(even){background-color: #f2f2f2;}
+        #province tr:nth-child(even){background-color: #f2f2f2;}
 
-        #customers tr:hover {background-color: #ddd;}
+        #province tr:hover {background-color: #ddd;}
 
-        #customers th {
+        #province th {
             padding-top: 12px;
             padding-bottom: 12px;
             text-align: left;
@@ -44,7 +44,7 @@
             box-sizing: border-box;
         }
 
-        input[type=submit] {
+        input[type=submit], button{
             width: 300px;
             background-color: #4CAF50;
             color: white;
@@ -56,15 +56,26 @@
             text-align: center;
         }
 
-        input[type=submit]:hover {
+        input[type=submit]:hover, button:hover{
             background-color: #45a049;
         }
 
         #form {
-            width: 500px;
+            width: 70%;
             border-radius: 5px;
             background-color: #f2f2f2;
             padding: 20px;
+        }
+
+        textarea{
+            width: 100%;
+            resize: none;
+        }
+        table{
+            width: 100%;
+        }
+        tr{
+            width: 100%;
         }
 
         .notify span{font-size: 15px; color: blue;}

@@ -2,26 +2,39 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="/layout :: head"></head>
 <body>
-<h3>View Customer</h3>
-<p>
-    <a th:href="@{/}">
-        Back to customer list
-    </a>
-</p>
+<div>
+    <span style="font-size: 30px; font-weight: bold">Thành phố <span th:text="${province.provinceName}"></span></span>
+    <a th:href="@{/home}"><button style="float: right; display: inline-block">Quay lại</button></a>
+</div>
+<br>
 <div id="detail">
-    <div class="cusdetail">
-        <label>Name:</label>
-        <label th:text="${customer.getName()}"></label>
+    <div>
+        <label>Province Name: </label>
+        <span th:text="${province.provinceName}"></span>
     </div>
-    <div class="cusdetail">
-        <label>Email:</label>
-        <label th:text="${customer.getEmail()}"></label>
+    <div>
+        <label>Nation: </label>
+        <span th:text="${province.nation}"></span>
     </div>
-    <div class="cusdetail">
-        <label>Address:</label>
-        <label th:text="${customer.getAddress()}"></label>
+    <div>
+        <label>Area: </label>
+        <span th:text="${province.area}"></span>
+    </div>
+    <div>
+        <label>Population: </label>
+        <span th:text="${province.population}"></span>
+    </div>
+    <div>
+        <label>GDP: </label>
+        <span th:text="${province.gdp}"></span>
+    </div>
+    <div>
+        <label>Description:</label>
+        <br>
+        <span th:text="${province.description}"></span>
     </div>
 </div>
+<a th:href="@{/edit/__${province.getProvinceId()}__}"><button>Chỉnh sửa</button></a> <a th:href="@{/delete/__${province.getProvinceId()}__}"><button>Xóa</button></a>
 <footer th:replace="/layout :: footer"></footer>
 </body>
 </html>
